@@ -1,6 +1,3 @@
-
-import java.math.BigInteger;
-
 /*
  * Universidade Federal de Santa Catarina - UFSC
  * Departamento de Informática e Estatística - INE
@@ -14,20 +11,25 @@ import java.math.BigInteger;
 /**
  * @author Osmar de Oliveira Braz Junior
  */
+
+import java.math.BigInteger;
+
 public class Principal {
 
     /**
      * O teto (ceiling) de um número real x é o resultado do arredondamento de x
      * para cima. Em outras palavras, o teto de x é o único número inteiro j tal
      * que j−1<x<=j
-     * Ex. O teto de 3.9 é 4
+     *  Ex. O teto de 3.9 é 4
+     * 
+     * Em java pode ser utilizando Math.ceil(double)
      *
      * @param x Numero real a ser cálculado o teto.
      * @return um valor inteiro com o teto de x.
      */
     public static int teto(double x) {
         //Pego a parte inteira de x;
-        int parteInteira = (int) x;
+        int parteInteira = (int) x;        
         //Pego a parte fracionária de x
         double parteFracionaria = x - parteInteira;
         //Retorno x subtraindo a parte fracionaria e adiciona 1;
@@ -39,6 +41,8 @@ public class Principal {
      * Em outras palavras, o piso de x é o único número inteiro i tal que 
      * i<=x<i+1.
      * Ex. O piso de 3.9 é 3
+     * 
+     * Em java pode ser utilizando Math.floor(double)
      * 
      * @param x Numero real a ser cálculado o piso.
      * @return um valor inteiro com o piso de x.
@@ -64,13 +68,14 @@ public class Principal {
         if (n <= 3) {
             return u.multiply(v);
         } else {
+            //Divide os segmentos dos números em dois
             int m = teto(n / 2.0);
             
             //x = a + 2^n b, y = c + 2^n d           
             // shiftRight, calcula o piso de 2^n
             // Recupera o primeiro segmento de u
             // b = u mod 10^m
-            BigInteger b = u.shiftRight(m);
+            BigInteger b = u.shiftRight(m);          
             // Recupera o segundo segmento de u
             // a = u /10^m
             BigInteger a = u.subtract(b.shiftLeft(m));
@@ -89,18 +94,21 @@ public class Principal {
             BigInteger y = karatsuba(a.add(b), c.add(d), m);
             //x =  ac * 10^2m + (y − ac − bd) * 10^m + bd
             BigInteger x = ac.add(y.subtract(ac).subtract(bd).shiftLeft(m)).add(bd.shiftLeft(2 * m));
+            //Retorna o cálculo
             return x;
         }
     }
 
     public static void main(String[] args) {
-
+        //Valores em string    
         String su = "99998888";
         String sv = "77776666";
         
+        //Instancia os inteiros absurdamente grantes com os valores anteriores
         BigInteger u = new BigInteger(su);
         BigInteger v = new BigInteger(sv);
 
+        //Verifica qual dos dois números é maior e retorna a quantidade de bits.
         int n = Math.max(u.bitLength(), v.bitLength());
       
         BigInteger x = karatsuba(u, v, n);
@@ -108,8 +116,6 @@ public class Principal {
         System.out.println("n:" + n);        
         System.out.println("u:" + su);        
         System.out.println("v:" + sv);        
-        System.out.println("u x v=:"+ x);
-        
-        //System.out.println("x:" + x);
+        System.out.println("u * v=:"+ x);        
     }
 }
