@@ -17,6 +17,23 @@ import java.math.BigInteger;
 public class Principal {
 
     /**
+     * Retorna o maior valor entre dois valores inteiros.
+     *
+     * Em java pode ser utilizando Math.max(int a, int b)
+     * 
+     * @param a primeiro valor inteiro.
+     * @param b segundo valor inteiro.
+     * @return o maior valor entre os a e b
+     */
+    public static int max(int a, int b) {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+    
+    /**
      * O teto (ceiling) de um número real x é o resultado do arredondamento de x
      * para cima. Em outras palavras, o teto de x é o único número inteiro j tal
      * que j−1<x<=j
@@ -109,7 +126,7 @@ public class Principal {
         BigInteger v = new BigInteger(sv);
 
         //Verifica qual dos dois números é maior e retorna a quantidade de bits.
-        int n = Math.max(u.bitLength(), v.bitLength());
+        int n = max(u.bitLength(), v.bitLength());
       
         BigInteger x = karatsuba(u, v, n);
 
