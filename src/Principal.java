@@ -121,7 +121,7 @@ public class Principal {
         String su = "99998888";
         String sv = "77776666";
         
-        //Instancia os inteiros absurdamente grantes com os valores anteriores
+        //Instancia os inteiros absurdamente grandes com os valores anteriores
         BigInteger u = new BigInteger(su);
         BigInteger v = new BigInteger(sv);
 
