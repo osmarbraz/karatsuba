@@ -1,3 +1,3 @@
 # Algoritmo de Karatsuba
 
-Realiza cálculos com números inteiros absurdamente grandes.
+Realiza a multiplicação com números inteiros absurdamente grandes.
